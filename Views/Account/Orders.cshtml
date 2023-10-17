@@ -1,0 +1,17 @@
+﻿@model IEnumerable<mtg.ViewModels.UserOrdersViewModel>
+@{
+    ViewData["Title"] = "User Orders";
+}
+<link rel="stylesheet" href="~/css/orders.css">
+<div id="orders-container">
+        <h1>@ViewData["Title"]</h1>
+        <ul>
+                @foreach (var item in Model)
+                {
+                                <li>
+                                        <h2>Order Id: @item.order.Id</h2>
+                                        <p>Card: @item.card.Name</p>
+                                </li>
+                }
+        </ul>
+</div>

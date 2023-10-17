@@ -1,0 +1,104 @@
+body {
+        background-image: url("../images/background.jpg") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: black;
+        color: #AB966F;
+}
+
+form#searchForm{
+        padding: 3rem;
+        border: 0.1rem  solid #AB966F;
+        background-color: rgba(0, 0, 0, .9);
+        margin-bottom: 2.5rem;
+}
+
+form#searchForm input[type="text"], form#searchForm button[type="submit"], form#searchForm input[type="number"], form#searchForm select{
+        background-color: rgba(0, 0, 0, .9);
+        border: 0.1rem solid #AB966F;
+        color: #AB966F;
+        width: 20rem;
+        display: inline-block;
+        border-radius: 0;
+        margin: 1rem;
+}
+
+form#searchForm label{
+        display: block;
+}
+
+form#searchForm div#toggleArrow {
+        display: block;
+        cursor: pointer;
+}
+
+form#searchForm button[type="submit"]:hover{
+        background-color: #AB966F;
+        border: 0.1rem solid #AB966F;
+        color: black;
+        width: 20rem;
+        display: inline-block;
+        border-radius: 0;
+        margin: 1rem;
+}
+
+div.card{
+        background-color: rgba(0, 0, 0, .9);
+        border: 0.1rem solid #AB966F;
+        padding: 3rem;
+        margin-bottom: 2.5rem;
+}
+
+div.card img{
+        width: 50%;
+        border-radius: 1.5rem;
+}
+
+div.card h3 a{
+        color: #AB966F;
+        text-decoration: none;
+}
+
+div.card h3 a:hover{
+        color: white;
+}
+
+div.card input[type="submit"], form input[type="submit"]{
+        background-color: rgba(0, 0, 0, .9);
+        border: 0.1rem solid #AB966F;
+        color: #AB966F;
+        width: 20rem;
+        display: inline-block;
+        border-radius: 0;
+        margin: 1rem;
+}
+
+div.card input[type="submit"]:hover{
+        background-color: #AB966F;
+        border: 0.1rem solid #AB966F;
+        color: black;
+}
+
+h1#cart, p#empty{
+        display: inline-block;
+        background-color: rgba(0, 0, 0, .9);
+        border: 0.1rem solid #AB966F;
+        color: white;
+        padding: 1rem;
+}
+
+div.pagination{
+        background-color: rgba(0, 0, 0, .9);
+        border: 0.1rem solid #AB966F;
+        color: white;
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20rem;
+}
+
+div.pagination a{
+        color: #AB966F;
+}

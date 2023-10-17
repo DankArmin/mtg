@@ -1,0 +1,80 @@
+@model mtg.ViewModels.CardViewModel
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/detailed-card.css">
+    <title>DetailedCard</title>
+</head>
+<body>
+        <div id="detailed-card-container">
+                <h1>@Model.Name</h1>
+                <a asp-controller="MagicTheGathering" asp-action="ConfirmPurchase" asp-route-id="@Model.Id">Order Now</a>
+                @{
+                        if (Model.OriginalImageUrl == null)
+                        {
+                                <p>Image unavailable.</p>
+                        } else {
+                                <img src="@Model.OriginalImageUrl" title="@Model.Name" alt="@Model.Name"/>
+                        }
+                }
+                <article id="detailed-card-text">
+                        @{
+                                if (Model.Text == null)
+                                {
+                                        <h2>Description</h2>
+                                        <p>No description available.</p>
+                                } else {
+                                        <h2>Description</h2>
+                                        <p>@Model.Text</p>
+                                }
+                        }
+                        @{
+                                if (Model.Flavor == null)
+                                {
+                                        <h2>Flavor Text</h2>
+                                        <p>No flavor text available.</p>
+                                } else {
+                                        <h2>Flavor Text</h2>
+                                        <p>@Model.Flavor</p>
+                                }
+                        }
+                </article>
+                <article id="detailed-card-stats">
+                <h2>Statistics:</h2>
+                @{
+                        if (Model.OriginalType == null)
+                        {
+                                <p>Type: Unknown</p>
+                        } else {
+                                <p>Type: @Model.OriginalType</p>
+                        }
+                }
+                @{
+                        if (Model.ConvertedManaCost == null)
+                        {
+                                <p>Mana Cost: Not available</p>
+                        } else {
+                                <p>Mana Cost: @Model.ConvertedManaCost (@Model.ManaCost)</p>
+                        }
+                }
+                @{
+                        if (Model.Power == null)
+                        {
+                                <p>Power: Not available</p>
+                        } else {
+                                <p>Power: @Model.Power</p>
+                        }
+                }
+                @{
+                        if (Model.Toughness == null)
+                        {
+                                <p>Toughness: Not available</p>
+                        } else {
+                                <p>Toughness: @Model.Toughness</p>
+                        }
+                }
+                </article>
+        </div>
+</body>
+</html>

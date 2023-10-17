@@ -1,0 +1,15 @@
+﻿@model mtg.ViewModels.UserProfileViewModel
+@{
+    ViewData["Title"] = "User Profile";
+}
+<link rel="stylesheet" href="~/css/profile.css">
+
+<div id="profile-container">
+        <h1>@ViewData["Title"].</h1>
+        <img src="@Model.ProfileImage" alt="" class="img-rounded img-responsive" />
+        <div>
+                <h3>@Model.Name</h3>
+                <a class="nav-link text-dark" asp-controller="Account" asp-action="Orders">Orders</a>
+        </div>
+</div>
+        

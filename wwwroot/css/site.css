@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Marcellus SC', serif;
+  margin-bottom: 60px;
+}
+
+nav.navbar {
+        background-color: #111 !important;
+        border: none !important;
+}
+
+.footer {
+        border: none !important;
+}
+
+.navbar-brand {
+  color: white !important;
+}
+
+.nav-link {
+  color: #b4b2b0 !important;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+footer {
+        background-color: #111;
+}

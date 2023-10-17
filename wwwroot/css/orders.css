@@ -1,0 +1,36 @@
+body {
+        background-image: url("../images/background.jpg") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: black;
+}
+
+div#orders-container{
+        padding: 3rem;
+        border: 0.1rem  solid #AB966F;
+        background-color: rgba(0, 0, 0, .9);
+}
+
+div#orders-container h1 {
+        color: white;
+        font-size: 2.5rem;
+        margin: 0;
+        padding: 0;
+        grid-area: card-name;
+}
+
+div#orders-container h2 {
+        border-bottom: #AB966F 0.1rem solid;
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+}
+
+div#orders-container p {
+        color: #b4b2b0;
+        font-size: 1.5rem;
+}
+
+div#orders-container li {
+        margin-bottom: 3rem;
+}

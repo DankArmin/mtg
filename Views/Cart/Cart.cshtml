@@ -1,0 +1,53 @@
+@model IEnumerable<mtg_lib.Library.Models.Card>
+@using Newtonsoft.Json
+<link rel="stylesheet" href="~/css/cards.css">
+
+@{
+    ViewData["Title"] = "Cart";
+    var cartString = Context.Session.GetString("Cart");
+    var test = Context.Session.GetString("Test");
+
+}
+
+<h1 id="cart">Cart</h1>
+@{
+    if (cartString == null)
+    {
+        <p id="empty">Cart is empty</p>
+    }
+    else
+    {
+        Dictionary<long, int> cart = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<long, int>>(cartString);
+
+        foreach (var item in Model)
+        {
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">@item.Name</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="@item.OriginalImageUrl" class="img-fluid" />
+                    </div>
+                    <div class="col-md-8">
+                        <p>@item.Text</p>
+                        <p>Quantity: @cart[item.Id]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        }
+    }
+
+    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-controller="Cart" asp-action="orderFromCart" method="Post">
+                        <input type="submit" value="Order" />
+                    </form>
+                    } else
+                    {
+                        <p>You must be logged in if you want to order.</p>
+                    }
+}

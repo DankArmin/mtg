@@ -1,0 +1,134 @@
+@model IEnumerable<mtg_lib.Library.Models.Card>
+<link rel="stylesheet" href="~/css/cards.css">
+<form id="searchForm" method="get" action="@Url.Action("Cards")">
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="searchTerm">Search by name</label>
+                <input type="text" name="searchTerm" class="form-control" id="searchTerm">
+            </div>
+            <div id="toggleArrow" class="col">
+                <span class="arrow">&#9660;</span>
+                <span class="filter-text">Filter</span>
+            </div>
+        </div>
+        <div id="filters" class="row" style="display: none;">
+            <div class="col">
+                <label for="minManaCost">Min Mana Cost:</label>
+                <input type="number" name="minManaCost" class="form-control" id="minManaCost">
+            </div>
+            <div class="col">
+                <label for="maxManaCost">Max Mana Cost:</label>
+                <input type="number" name="maxManaCost" class="form-control" id="maxManaCost">
+            </div>
+            <div class="col">
+                <label for="minPower">Min Power:</label>
+                <input type="number" name="minPower" class="form-control" id="minPower">
+            </div>
+            <div class="col">
+                <label for="maxPower">Max Power:</label>
+                <input type="number" name="maxPower" class="form-control" id="maxPower">
+            </div>
+        </div>
+        <div class="form-group">
+        <label for="sortCriteria">Sort By:</label>
+        <select name="sortCriteria" id="sortCriteria" class="form-control">
+            <option value="default">Default</option>
+            <option value="nameAsc">Name (A-Z)</option>
+            <option value="nameDesc">Name (Z-A)</option>
+            <option value="manaCostAsc">Mana Cost (Low-High)</option>
+            <option value="manaCostDesc">Mana Cost (High-Low)</option>
+            <option value="powerAsc">Power (Low-High)</option>
+            <option value="powerDesc">Power (High-Low)</option>
+        </select>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<script>
+    const toggleArrow = document.getElementById('toggleArrow');
+    const filters = document.getElementById('filters');
+    const searchForm = document.getElementById('searchForm');
+
+    toggleArrow.addEventListener('click', function() {
+        filters.style.display = filters.style.display === 'none' ? 'flex' : 'none';
+    });
+
+    searchForm.addEventListener('submit', function() {
+        filters.style.display = 'flex';
+    });
+</script>
+
+@for (int i = 0; i < Model.Count(); i++)
+{
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><a asp-controller="MagicTheGathering" asp-action="DetailedCard" asp-route-id="@Model.ElementAt(i).Id">@Model.ElementAt(i).Name</a></h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@Model.ElementAt(i).OriginalImageUrl" class="img-fluid" />
+                </div>
+                <div class="col-md-8">
+                    <p>@Model.ElementAt(i).Text</p>
+                    <form asp-controller="Cards" asp-action="addToCart" method="Post">
+                        <input type="hidden" name="cardId" asp-for="@Model.ElementAt(i).Id"/>
+                        <input type="submit" value="Add to Cart" />
+                    </form>
+                    <form asp-controller="MagicTheGathering" asp-action="ConfirmPurchase"  asp-route-id="@Model.ElementAt(i).Id" method="Post">
+                        <input type="submit" value="Order Now" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+}
+<div class="pagination">
+    @if ((int)ViewData["TotalPages"] > 1)
+    {
+        int currentPage = (int)ViewData["Page"];
+        int totalPages = (int)ViewData["TotalPages"];
+        int maxVisiblePages = 20;
+
+        if (currentPage > 1)
+        {
+            <a href="@Url.Action("Cards", new { page = currentPage - 1, searchTerm = ViewData["SearchTerm"], minManaCost = ViewData["MinManaCost"], maxManaCost = ViewData["MaxManaCost"], minPower = ViewData["MinPower"], maxPower = ViewData["MaxPower"], sortCriteria = ViewData["SortCriteria"] })">Previous</a>
+        }
+
+        <div class="page-numbers">
+            @if (currentPage > maxVisiblePages / 2 + 1)
+            {
+                <a href="@Url.Action("Cards", new { page = 1, searchTerm = ViewData["SearchTerm"], minManaCost = ViewData["MinManaCost"], maxManaCost = ViewData["MaxManaCost"], minPower = ViewData["MinPower"], maxPower = ViewData["MaxPower"], sortCriteria = ViewData["SortCriteria"] })">1</a>
+                <span>...</span>
+            }
+
+            @for (int i = Math.Max(1, currentPage - maxVisiblePages / 2); i <= Math.Min(totalPages, currentPage + maxVisiblePages / 2); i++)
+            {
+                if (i == currentPage)
+                {
+                    <span class="current-page">@i</span>
+                }
+                else
+                {
+                    <a href="@Url.Action("Cards", new { page = i, searchTerm = ViewData["SearchTerm"], minManaCost = ViewData["MinManaCost"], maxManaCost = ViewData["MaxManaCost"], minPower = ViewData["MinPower"], maxPower = ViewData["MaxPower"], sortCriteria = ViewData["SortCriteria"] })">@i</a>
+                }
+            }
+
+            @if (currentPage < totalPages - maxVisiblePages / 2)
+            {
+                <span>...</span>
+                <a href="@Url.Action("Cards", new { page = totalPages, searchTerm = ViewData["SearchTerm"], minManaCost = ViewData["MinManaCost"], maxManaCost = ViewData["MaxManaCost"], minPower = ViewData["MinPower"], maxPower = ViewData["MaxPower"], sortCriteria = ViewData["SortCriteria"] })">@totalPages</a>
+            }
+        </div>
+
+        if (currentPage < totalPages)
+        {
+            <a href="@Url.Action("Cards", new { page = currentPage + 1, searchTerm = ViewData["SearchTerm"], minManaCost = ViewData["MinManaCost"], maxManaCost = ViewData["MaxManaCost"], minPower = ViewData["MinPower"], maxPower = ViewData["MaxPower"], sortCriteria = ViewData["SortCriteria"] })">Next</a>
+        }
+    }
+</div>
+</div>

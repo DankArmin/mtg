@@ -1,0 +1,65 @@
+body {
+        background-image: url("../images/background.jpg") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: black;
+}
+
+div#detailed-card-container {
+        padding: 3rem;
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 5rem 1fr; 
+        grid-template-areas: 
+        "card-name purchase"
+        "img card-text"
+        "img card-stats"; 
+        border: 0.1rem  solid #AB966F;
+        background-color: rgba(0, 0, 0, .9);
+}
+
+div#detailed-card-container  a {
+        background-color: #AB966F;
+        border: 0.1rem  solid white;
+        grid-area: purchase;
+        text-align: center;
+        font-size: 2rem;
+        text-decoration: none;
+        color: white;
+        margin: .5rem 5rem 1rem 5rem;
+}
+
+div#detailed-card-container  img {
+        grid-area: img;
+        width: 75%;
+        justify-self: center;
+        border-radius: 1.5rem;
+}
+
+div#detailed-card-container  article#detailed-card-text{
+        grid-area: card-text;
+}
+
+div#detailed-card-container  article#detailed-card-stats{
+        grid-area: card-stats;
+}
+
+div#detailed-card-container h1 {
+        color: white;
+        font-size: 2.5rem;
+        margin: 0;
+        padding: 0;
+        grid-area: card-name;
+}
+
+div#detailed-card-container h2 {
+        border-bottom: #AB966F 0.1rem solid;
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+}
+
+div#detailed-card-container p {
+        color: #b4b2b0;
+        font-size: 1.5rem;
+}

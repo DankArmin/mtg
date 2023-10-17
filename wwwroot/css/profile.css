@@ -1,0 +1,43 @@
+body {
+        background-image: url("../images/background.jpg") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: black;
+}
+
+div#profile-container {
+        padding: 3rem;
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 5rem 1fr; 
+        grid-template-areas: 
+        "title title title"
+        "img username a"
+        "img . ."; 
+        border: 0.1rem  solid #AB966F;
+        background-color: rgba(0, 0, 0, .9);
+}
+
+div#profile-container img {
+        grid-area: img;
+        width: 75%;
+        justify-self: center;
+}
+
+div#profile-container a {
+        grid-area: a;
+}
+
+div#profile-container h1 {
+        color: white;
+        font-size: 2.5rem;
+        margin: 0;
+        padding: 0;
+        grid-area: title;
+}
+
+div#profile-container h3 {
+        color: #b4b2b0;
+        font-size: 1.5rem;
+        grid-area: username;
+}
